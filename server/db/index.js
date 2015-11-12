@@ -42,6 +42,12 @@ User.belongsToMany(Book, {through: 'FavoriteBooks'});
 Book.belongsToMany(User, {through: 'FavoriteBooks'});
 
 /*
+ * Initialize join table between users and their current books.
+ */
+User.belongsToMany(Book, {through: 'CurrentBooks'});
+Book.belongsToMany(User, {through: 'CurrentBooks'});
+
+/*
  * Initialize join table between users and their bookmarks.
  */
 User.belongsToMany(User, {as: 'Bookmark', through: "Bookmarks"});

@@ -9,5 +9,6 @@
  * @type {Object}
  */
 module.exports = {
-  users: require('./usersRoutes')
+  users: require('./usersRoutes'),
+  books: require('./booksRoutes')
 };

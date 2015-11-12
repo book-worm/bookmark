@@ -43,7 +43,7 @@ module.exports = {
     
   },
   put: function (req, res) {
-    // TODO - Ad bookmarks. Template below
+    // TODO - Add bookmarks. Template below
     // db.User.findById(1).then(function(user) {
     //   user.addBookmark(2).then(function(){res.sendStatus(201);});
     // });
