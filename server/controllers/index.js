@@ -1,31 +1,13 @@
-var db = require('../db');
-var url = require('url');
-var Sequelize = require("sequelize");
-
+/**
+ * Serves as an intermediate step between /server/routes.js and the 
+ * individual router files within /servers/controllers/
+ *
+ * To add new routers, extend this object. Note that the 
+ * property name associated with a given router must be the URL
+ * being routed. E.g. the 'users' router is used when a request is
+ * made to '/users'.
+ * @type {Object}
+ */
 module.exports = {
-
-  users: {
-    get: function (req, res) {
-      db.User.findAll().then(function (users) {
-        res.json(users);
-      }).catch(function (err) {
-        console.error('Error getting users: ', err);
-      });
-    },
-    post: function (req, res) {
-      db.User.create({
-        username: req.body.username,
-      }).then(function(user) {
-        res.sendStatus(201);
-      })
-      .catch(function (err) {
-        console.error('Error creating user: ', err);
-      });
-    },
-    put: function (req, res) {
-
-    },
-    delete: function (req, res) {
-    }
-  }
+  users: require('./usersRoutes')
 };

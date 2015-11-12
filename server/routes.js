@@ -1,12 +1,12 @@
-var controllers = require('./controllers');
+var controller = require('./controllers/index');
 var router = require('express').Router();
 
-for (var route in controllers) {
+for (var route in controller) {
   router.route("/" + route)
-    .get(controllers[route].get)
-    .post(controllers[route].post)
-    .put(controllers[route].put)
-    .delete(controllers[route].delete);
+    .get(controller[route].get)
+    .post(controller[route].post)
+    .put(controller[route].put)
+    .delete(controller[route].delete);
 }
 
 module.exports = router;
