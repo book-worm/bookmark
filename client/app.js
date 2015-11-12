@@ -7,7 +7,6 @@ angular.module('app', [
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $urlRouterProvider.otherwise('/');
-  console.log("yo");
   $stateProvider
     .state('login', {
       url: '/login',
