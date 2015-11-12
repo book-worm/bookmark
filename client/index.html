@@ -14,8 +14,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 
-    <script src = "app/main.controller.js"></script>
-    <script src = "app/login/loginController.js"></script>
+    <script src = "app/account/accountCtrl.js"></script>
+    <script src = "app/bookmarks/bookmarksCtrl.js"></script>
+    <script src = "app/browse/browseCtrl.js"></script>
+    <script src = "app/chat/chatCtrl.js"></script>
+    <script src = "app/login/loginCtrl.js"></script>
     <script src = "app/services.js"></script>
     <script src = "app.js"></script>
 
@@ -27,12 +30,13 @@
 
   <body ng-app="app">
     <!--NAVBAR-->
-
+      <div ui-view name="nav"></div>
+  
     <!-- MAIN CONTENT -->
     <div class="container">
 
       <!-- THIS IS WHERE WE WILL INJECT OUR UI ROUTER CONTENT-->
-      <div ui-view ></div>
+      <div ui-view name="content"></div>
 
       <!--testing jquery flip functionality, please ignore
         <h3>Insert <a href="#">{{name}} here</a></h3>
@@ -54,10 +58,6 @@
               <a href="http://drbl.in/dcbE"><img src="images/demo1/5.jpg" alt="image05"/></a>
             </div> -->
         <!--   </div> -->
-
-
-
-      
     </div>
   </body>
 
