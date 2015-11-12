@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize");
 
-/* 
+/*
 * Extract DB Connection string if on deployed environment. Otherwise use default.
 * If testing locally, make a POSTGRES DB with the same specifications.
 * u/n: 'tunnelsup'
@@ -9,22 +9,18 @@ var Sequelize = require("sequelize");
 * DB name: 'bookup_development'
 */
 var connectionString = process.env.DATABASE_URL || 'postgres://tunnelsup:SQL@localhost:5432/bookup_development';
-var orm = new Sequelize(connectionString);
+var sequelize = new Sequelize(connectionString);
 
 /**
  * 'User' ORM object. Maintains id from Goodreads, username and profile pic URL.
  * Contains a separate id value for primary key.
- * 
+ *
  * @type {ORM Object}
  */
-var User = orm.define('User', {
+var User = sequelize.define('User', {
   goodreadsId: Sequelize.INTEGER,
   username: Sequelize.STRING,
   profile_img_url: Sequelize.STRING
-});
-
-var Bookmarks = orm.define('Bookmark', {
-  
 });
 
 /**
@@ -32,7 +28,7 @@ var Bookmarks = orm.define('Bookmark', {
  *
  * @type {ORM Object}
  */
-var Book = orm.define('Book', {
+var Book = sequelize.define('Book', {
   title: Sequelize.STRING,
   author: Sequelize.STRING,
   genre: Sequelize.STRING,
@@ -48,14 +44,12 @@ Book.belongsToMany(User, {through: 'FavoriteBooks'});
 /*
  * Initialize join table between users and their bookmarks.
  */
-User.belongsToMany(User, {as: 'Bookmarks', through: "Bookmark"});
+User.belongsToMany(User, {as: 'Bookmark', through: "Bookmarks"});
 
 /*
  * Create tables if they don't already exist.
  */
-User.sync();
-Book.sync();
-Bookmarks.sync();
+sequelize.sync({force: true});
 
 exports.User = User;
 exports.Book = Book;

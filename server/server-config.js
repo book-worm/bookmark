@@ -10,7 +10,7 @@ var app = express();
 app.use(morgan('dev'));
 app.use(parser.json());
 
-// Set up our routes
+// Set up base router
 app.use("/", router);
 
 // Serve the client files

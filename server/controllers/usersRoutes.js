@@ -44,9 +44,9 @@ module.exports = {
   },
   put: function (req, res) {
     // TODO - Ad bookmarks. Template below
-    db.User.findById(1).then(function(user) {
-      user.addBookmark(2).then(function(){res.sendStatus(201);});
-    });
+    // db.User.findById(1).then(function(user) {
+    //   user.addBookmark(2).then(function(){res.sendStatus(201);});
+    // });
   },
   delete: function (req, res) {
     // TODO: Delete user and cascade to delete join table entries
