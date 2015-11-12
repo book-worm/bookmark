@@ -4,10 +4,10 @@ angular.module('app', ['ui.router'])
     
   $urlRouterProvider.otherwise('/');
   
-  $stateProvider
+  // $stateProvider
   // .state('x', {
   //     url: '/x',
   //     templateUrl: 'x.html',
   //     controller: 'main.controller.js'
-  //   })
-  ;
+  //   });
+});
