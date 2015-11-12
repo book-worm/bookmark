@@ -1,0 +1,12 @@
+{
+  "name": "bookup",
+  "version": "0.0.0",
+  "homepage": "https://github.com/hard-cover",
+  "authors": [
+    "bookupTeam"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.4.7"
+  }
+}
