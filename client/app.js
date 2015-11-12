@@ -3,7 +3,7 @@ angular.module('app', [
   'app.services',
   'login',
   'browse',
-  'profile',
+  'account',
   'chat',
   'bookmarks'
   ])
