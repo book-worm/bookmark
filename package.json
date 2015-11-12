@@ -1,0 +1,29 @@
+{
+  "name": "Book-Up",
+  "version": "0.0.1",
+  "main": "server/server.js",
+  "description": "HR35 Greenfield Project",
+  "author": "Gelatinous Stump",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "mocha server/spec"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.4",
+    "request": "^2.34.0",
+    "chai": "^1.9.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "morgan": "^1.6.1",
+    "pg": "^4.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hard-cover/bookup.git"
+  }
+}
