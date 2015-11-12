@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Fawn
+  - __Scrum Master__: Yifeng
+  - __Development Team Members__: Soroush, Colin
 
 ## Table of Contents
 
