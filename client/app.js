@@ -16,6 +16,6 @@ angular.module('app', [
     .state('main', {
         url: '/x',
         templateUrl: '/app/main.html',
-        controller: 'MainCtrl'
+        controller: 'mainCtrl'
     });
 });
