@@ -18,6 +18,9 @@ angular.module('app', [
         content: { // no navbar for login
           templateUrl: '/app/login/login.html',
           controller: 'loginCtrl'
+        },
+        footer: {
+          templateUrl: '/app/footer/footer.html'
         }
       }
     })
@@ -30,6 +33,9 @@ angular.module('app', [
         content: {
           templateUrl: '/app/login/login.html',
           controller: 'loginCtrl'
+        },
+        footer: {
+          templateUrl: '/app/footer/footer.html'
         }
       }
     })
