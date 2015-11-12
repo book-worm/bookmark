@@ -12,8 +12,14 @@ passport.use(new GoodreadsStrategy({
     callbackURL: "http://127.0.0.1:3000/auth/goodreads/callback"
   },
   function(token, tokenSecret, profile, done) {
-    db.User.findOrCreate({ goodreadsId: profile.id }, function (err, user) {
-      return done(err, user);
+    db.User.find({ goodreadsId: profile.id }, function (err, user) {
+      if (err) {
+        // redirect to login
+      } else if (user) {
+        // log in
+      } else {
+        // create user
+      }
     });
   }
 ));
