@@ -8,4 +8,4 @@ angular.module('app.services', [])
         return data;
       })
     }
-  })
+  });
