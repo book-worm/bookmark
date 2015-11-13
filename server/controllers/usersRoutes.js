@@ -12,6 +12,7 @@ var Sequelize = require('sequelize');
  *         'gid' - Return user by Goodreads Id
  *         'fid' - Return favorite books of a user by INTERNAL Id
  *         'cid' - Return current books of a user by INTERNAL Id
+ *         'bid' - Return bookmarks of a user by INTERNAL Id
  *         '' - Returns all users
  *
  * POST: TODO -- Receives userId from client, performs API call to retrieve profile data, 
@@ -63,6 +64,16 @@ module.exports = {
         res.json(books);
       }).catch(function (err) {
         console.error('Error getting current books of user with Id: ', req.query.gid, " Error: ", err);
+      });
+    }
+    else if (req.query.bid) {
+      db.User.findById(req.query.bid)
+      .then(function (user) {
+        return user.getBookmark();
+      }).then(function (users) {
+        res.json(users);
+      }).catch(function (err) {
+        console.error('Error getting bookmarks of user with Id: ', req.query.gid, " Error: ", err);
       });
     }
     else { 
