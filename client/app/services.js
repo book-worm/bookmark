@@ -36,7 +36,7 @@ angular.module('app.services', [])
         method: 'GET',
         url: '/users?fid=' + targetUserId,
       }).then(function(favorites){
-        return favorites;
+        return favorites.data;
       }).catch(function(err){
         console.error(err);
       });
@@ -47,7 +47,7 @@ angular.module('app.services', [])
         method: 'GET',
         url: '/users?cid=' + targetUserId,
       }).then(function(current){
-        return current;
+        return current.data;
       }).catch(function(err){
         console.error(err);
       });
