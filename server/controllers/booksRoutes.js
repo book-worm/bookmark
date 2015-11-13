@@ -21,9 +21,9 @@ var Sequelize = require('sequelize');
 module.exports = {
   get: function (req, res) {
     if (req.query.id) {
-      return db.Book.findById(req.query.id)
-      .then(function (book) {
-        return book.getUsers();
+      return db.User.findById(req.query.id)
+      .then(function (user) {
+        return user.getFavoriteBook();
       })
       .then(function (result) {
         res.json(result);
@@ -49,7 +49,16 @@ module.exports = {
       b = book;
       return db.User.findById(1);
     }).then(function (user) {
-      return user.addBook(b, {favorite: true, current: false});
+      return user.addCurrentBook(b);
+    })
+    .then(function() {
+      return db.User.findById(2);
+    }).then(function (user) {
+      return user.addFavoriteBook(b);
+    }).then(function() {
+      return db.User.findById(3);
+    }).then(function (user) {
+      return user.addFavoriteBook(b);
     })
     .then(function () {
       res.sendStatus(201);

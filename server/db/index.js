@@ -37,24 +37,25 @@ var Book = sequelize.define('Book', {
 
 /*
  * Initialize join table between users and their favorite books.
- * Need to create a seperate model to facilitate structurally similar
- * join tables.
+ * This was such a PITA to figure out.
  */
-var BookJoin = sequelize.define('BookJoin', {
-  favorite: Sequelize.BOOLEAN,
-  current: Sequelize.BOOLEAN
-});
-User.belongsToMany(Book, {through: {model: BookJoin}});
-Book.belongsToMany(User, {through: {model: BookJoin}});
+
+User.belongsToMany(Book, {as: "FavoriteBook", through: "FavoriteBooks"});
+Book.belongsToMany(User, {as: "FavoriteUser", through: "FavoriteBooks"});
+
+User.belongsToMany(Book, {as: "CurrentBook", through: "CurrentBooks"});
+Book.belongsToMany(User, {as: "CurrentUser", through: "CurrentBooks"});
 
 /*
  * Initialize join table between users and their bookmarks.
+ * And rejects...
  */
-User.belongsToMany(User, {as: 'Bookmark', through: "Bookmarks"});
+User.belongsToMany(User, {as: "Bookmark", through: "Bookmarks"});
+User.belongsToMany(User, {as: "Reject", through: "Rejects"});
 
 /*
  * Create tables if they don't already exist.
- * Use {force: true} to wipe tables each time you restart node.
+ * Use {force: true} argument to wipe tables each time you restart node.
  * Good for testing, but BE CAREFUL.
  */
 sequelize.sync();
