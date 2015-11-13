@@ -7,12 +7,20 @@ var Sequelize = require('sequelize');
  * Requires 'url' and 'sequelize' for more advanced query operations
  * such as parsing parameters from a request URL and using 'or' queries.
  *
- * GET: Returns all users in database.
+ * GET: Accepts the follow queries:
+ *         'id' - Return user by INTERNAL Id
+ *         'gid' - Return user by Goodreads Id
+ *         'fid' - Return favorite books of a user by INTERNAL Id
+ *         'cid' - Return current books of a user by INTERNAL Id
+ *         '' - Returns all users
  *
  * POST: TODO -- Receives userId from client, performs API call to retrieve profile data, 
  * then inserts into database.
  *
- * PUT: TODO -- Add bookmarks
+ * PUT: TODO -- Add bookmarks and rejects. Expects the following in req.body:
+ *         'userId' - Id of the user making the selection
+ *         'targetId' - Id of the user being selected
+ *         'choice' - 'B' or 'R' for bookmark or reject 
  *
  * DELETE: TODO -- Remove a user and associated entries in join tables.
  * 
@@ -29,12 +37,40 @@ module.exports = {
         console.error('Error getting user with Id: ', req.query.id, " Error: ", err);
       });
     }
+    else if (req.query.gid) {
+      db.User.findOne({where: {goodreadsId: req.query.gid}})
+      .then(function (user) {
+        res.json(user);
+      }).catch(function (err) {
+        console.error('Error getting user with GoodreadsId: ', req.query.gid, " Error: ", err);
+      });
+    }
+    else if (req.query.fid) {
+      db.User.findById(req.query.fid)
+      .then(function (user) {
+        return user.getFavoriteBook();
+      }).then(function (books) {
+        res.json(books);
+      }).catch(function (err) {
+        console.error('Error getting favorite books of user with Id: ', req.query.gid, " Error: ", err);
+      });
+    }
+    else if (req.query.cid) {
+      db.User.findById(req.query.cid)
+      .then(function (user) {
+        return user.getCurrentBook();
+      }).then(function (books) {
+        res.json(books);
+      }).catch(function (err) {
+        console.error('Error getting current books of user with Id: ', req.query.gid, " Error: ", err);
+      });
+    }
     else { 
       db.User.findAll()
       .then(function (users) {
         res.json(users);
       }).catch(function (err) {
-        console.error('Error getting users: ', err);
+        console.error('Error getting all users: ', err);
       });
     }
   },
@@ -54,10 +90,31 @@ module.exports = {
     
   },
   put: function (req, res) {
-    // TODO - Add bookmarks. Template below
-    // db.User.findById(1).then(function(user) {
-    //   user.addBookmark(2).then(function(){res.sendStatus(201);});
-    // });
+    var source = req.body.userId;
+    var target = req.body.targetId;
+    var choice = req.body.choice;
+    if (!source || !target || (choice !== 'R' && choice !== 'B')) {
+      res.sendStatus(400); //Bad request
+    }
+    else {
+      var sourceUser;
+      db.User.findById(source)
+      .then(function (user1) {
+        sourceUser = user1;
+        return db.User.findById(target);
+      })
+      .then(function (user2) {
+        if (choice === 'R') {
+          sourceUser.addReject(user2);
+        }
+        else {
+          sourceUser.addBookmark(user2); 
+        }
+      })
+      .then(function () {
+        res.sendStatus(201);
+      });
+    }
   },
   delete: function (req, res) {
     // TODO: Delete user and cascade to delete join table entries

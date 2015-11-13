@@ -23,7 +23,7 @@ module.exports = {
     if (req.query.id) {
       return db.User.findById(req.query.id)
       .then(function (user) {
-        return user.getFavoriteBook();
+        return user.getCurrentBook();
       })
       .then(function (result) {
         res.json(result);
