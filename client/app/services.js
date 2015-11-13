@@ -37,55 +37,21 @@ angular.module('app.services', [])
         console.error(err);
       });
     }
-  /*
-  * Gets data for a User from database
-  * @return a promise
-  */
-  this.getUser = function(user_id){
-      return $http({
-        method:'GET',
-        url:'/users?id=' + user_id
-      }).then(function(user){
-        return user;
-      }).catch(function(err){
-        console.error(err);
-      });
-  }
+    /*
+    * Gets data for a User from database
+    * @return a promise
+    */
+    this.getUser = function(user_id){
+        return $http({
+          method:'GET',
+          url:'/users?id=' + user_id
+        }).then(function(user){
+          return user;
+        }).catch(function(err){
+          console.error(err);
+        });
+    }
 
   })
-  /*
-  * A service for interacting with books in the database
-  */
-  .service('Books', function ($http){
-    /*
-    * Makes get request for favorite books
-    * @return a promise
-    */
-    this.getFavoriteBooks = function(user_id){
-      return $http({
-          method:'GET',
-          url: '/books?fid=' + user_id
-        }).then(function(data){
-          return data;
-        }).catch(function (err){
-          console.error(err);
-        });
-      }
-    /*
-    * Makes get request for current books
-    * @return a promise
-    */
-    this.getCurrentBooks = function(user_id){
-      return $http({
-          method:'GET',
-          url: '/books?cid=' + user_id
-        }).then(function(data){
-          return data;
-        }).catch(function (err){
-          console.error(err);
-        });
-      }
-
-
 
   });
