@@ -37,25 +37,28 @@ var Book = sequelize.define('Book', {
 
 /*
  * Initialize join table between users and their favorite books.
+ * This was such a PITA to figure out.
  */
-User.belongsToMany(Book, {through: 'FavoriteBooks'});
-Book.belongsToMany(User, {through: 'FavoriteBooks'});
 
-/*
- * Initialize join table between users and their current books.
- */
-User.belongsToMany(Book, {through: 'CurrentBooks'});
-Book.belongsToMany(User, {through: 'CurrentBooks'});
+User.belongsToMany(Book, {as: "FavoriteBook", through: "FavoriteBooks"});
+Book.belongsToMany(User, {as: "FavoriteUser", through: "FavoriteBooks"});
+
+User.belongsToMany(Book, {as: "CurrentBook", through: "CurrentBooks"});
+Book.belongsToMany(User, {as: "CurrentUser", through: "CurrentBooks"});
 
 /*
  * Initialize join table between users and their bookmarks.
+ * And rejects...
  */
-User.belongsToMany(User, {as: 'Bookmark', through: "Bookmarks"});
+User.belongsToMany(User, {as: "Bookmark", through: "Bookmarks"});
+User.belongsToMany(User, {as: "Reject", through: "Rejects"});
 
 /*
  * Create tables if they don't already exist.
+ * Use {force: true} argument to wipe tables each time you restart node.
+ * Good for testing, but BE CAREFUL.
  */
-sequelize.sync({force: true});
+sequelize.sync();
 
 exports.User = User;
 exports.Book = Book;
