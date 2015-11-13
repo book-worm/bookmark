@@ -34,6 +34,9 @@ module.exports = {
     if (req.query.id) {
       db.User.findById(req.query.id)
       .then(function (user) {
+        if (user === null) {
+          res.sendStatus(400);
+        }
         res.json(user);
       }).catch(function (err) {
         console.error('Error getting user with Id: ', req.query.id, " Error: ", err);
@@ -42,6 +45,9 @@ module.exports = {
     else if (req.query.gid) {
       db.User.findOne({where: {goodreadsId: req.query.gid}})
       .then(function (user) {
+        if (user === null) {
+          res.sendStatus(400);
+        }
         res.json(user);
       }).catch(function (err) {
         console.error('Error getting user with GoodreadsId: ', req.query.gid, " Error: ", err);
@@ -50,6 +56,9 @@ module.exports = {
     else if (req.query.fid) {
       db.User.findById(req.query.fid)
       .then(function (user) {
+        if (user === null) {
+          res.sendStatus(400);
+        }
         return user.getFavoriteBook();
       }).then(function (books) {
         res.json(books);
@@ -60,6 +69,9 @@ module.exports = {
     else if (req.query.cid) {
       db.User.findById(req.query.cid)
       .then(function (user) {
+        if (user === null) {
+          res.sendStatus(400);
+        }
         return user.getCurrentBook();
       }).then(function (books) {
         res.json(books);
@@ -70,6 +82,9 @@ module.exports = {
     else if (req.query.bid) {
       db.User.findById(req.query.bid)
       .then(function (user) {
+        if (user === null) {
+          res.sendStatus(400);
+        }
         return user.getBookmark();
       }).then(function (users) {
         res.json(users);
@@ -86,6 +101,9 @@ module.exports = {
       db.User.findById(req.query.sid)
       .then(function (user) { // Get the sourceUser
         sourceUser=user;
+        if (user === null) {
+          res.sendStatus(400);
+        }
         return sourceUser.getBookmark();
       }).then(function (bUsers) { // Get the ids of sourceUser's bookmarks and store them
         for (var i=0; i<bUsers.length; i++) {
@@ -98,7 +116,7 @@ module.exports = {
           rejects.push(rUsers[i].id);
         }
         // Here we go: Find all users who's Ids are neither in bookmarks or rejects
-        return db.User.findAll({where: {id : {$notIn: bookmarks.concat(rejects)}}});
+        return db.User.findAll({where: {id : {$notIn: bookmarks.concat(rejects)}}, limit: 10});
       })
       .then(function (searchables) {
         res.json(searchables);
