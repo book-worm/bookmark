@@ -12,6 +12,8 @@ var Sequelize = require('sequelize');
  *         'gid' - Return user by Goodreads Id
  *         'fid' - Return favorite books of a user by INTERNAL Id
  *         'cid' - Return current books of a user by INTERNAL Id
+ *         'bid' - Return bookmarks of a user by INTERNAL Id
+ *         'sid' - Return searchable (not bookmark or reject) of a user by INTERNAL Id
  *         '' - Returns all users
  *
  * POST: TODO -- Receives userId from client, performs API call to retrieve profile data, 
@@ -52,7 +54,7 @@ module.exports = {
       }).then(function (books) {
         res.json(books);
       }).catch(function (err) {
-        console.error('Error getting favorite books of user with Id: ', req.query.gid, " Error: ", err);
+        console.error('Error getting favorite books of user with Id: ', req.query.fid, " Error: ", err);
       });
     }
     else if (req.query.cid) {
@@ -62,7 +64,43 @@ module.exports = {
       }).then(function (books) {
         res.json(books);
       }).catch(function (err) {
-        console.error('Error getting current books of user with Id: ', req.query.gid, " Error: ", err);
+        console.error('Error getting current books of user with Id: ', req.query.cid, " Error: ", err);
+      });
+    }
+    else if (req.query.bid) {
+      db.User.findById(req.query.bid)
+      .then(function (user) {
+        return user.getBookmark();
+      }).then(function (users) {
+        res.json(users);
+      }).catch(function (err) {
+        console.error('Error getting bookmarks of user with Id: ', req.query.bid, " Error: ", err);
+      });
+    }
+    else if (req.query.sid) {
+      var sourceUser;
+      var bookmarks = [req.query.sid]; // Need to filter the user too, might as well toss it here
+      var rejects = [];
+      db.User.findById(req.query.sid)
+      .then(function (user) {
+        sourceUser=user;
+        return sourceUser.getBookmark();
+      }).then(function (bUsers) {
+        for (var i=0; i<bUsers.length; i++) {
+          bookmarks.push(bUsers[i].id);
+        }
+        return sourceUser.getReject();
+      })
+      .then(function (rUsers) {
+        for (var i=0; i<rUsers.length; i++) {
+          rejects.push(rUsers[i].id);
+        }
+        return db.User.findAll({where: {id : {$notIn: bookmarks.concat(rejects)}}});
+      })
+      .then(function (searchables) {
+        res.json(searchables);
+      }).catch(function (err) {
+        console.error('Error getting searchables of user with Id: ', req.query.sid, " Error: ", err);
       });
     }
     else { 
