@@ -20,14 +20,43 @@ var Sequelize = require('sequelize');
  */
 module.exports = {
   get: function (req, res) {
-    db.Book.findAll().then(function (books) {
-      res.json(books);
-    }).catch(function (err) {
-      console.error('Error getting books: ', err);
-    });
+    if (req.query.id) {
+      return db.Book.findById(req.query.id)
+      .then(function (book) {
+        return book.getUsers();
+      })
+      .then(function (result) {
+        res.json(result);
+      }).catch(function (err) {
+        console.error('Error getting user with Id: ', req.query.id, " Error: ", err);
+      });
+    }
+    else { 
+      db.Book.findAll().then(function (books) {
+        res.json(books);
+      }).catch(function (err) {
+        console.error('Error getting books: ', err);
+      });
+    }
   },
   post: function (req, res) {
-    // TODO: Accept Id and make API request
+    db.Book.create({
+      title: req.body.title,
+      author: req.body.author,
+      genre: req.body.genre,
+      cover_img_url: req.body.profile_img_url
+    }).then(function(book) {
+      b = book;
+      return db.User.findById(1);
+    }).then(function (user) {
+      return user.addBook(b, {favorite: true, current: false});
+    })
+    .then(function () {
+      res.sendStatus(201);
+    })
+    .catch(function (err) {
+      console.error('Error creating book: ', err);
+    });
   },
   put: function (req, res) {
     // TODO: Change books?

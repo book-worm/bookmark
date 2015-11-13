@@ -37,15 +37,15 @@ var Book = sequelize.define('Book', {
 
 /*
  * Initialize join table between users and their favorite books.
+ * Need to create a seperate model to facilitate structurally similar
+ * join tables.
  */
-User.belongsToMany(Book, {through: 'FavoriteBooks'});
-Book.belongsToMany(User, {through: 'FavoriteBooks'});
-
-/*
- * Initialize join table between users and their current books.
- */
-User.belongsToMany(Book, {through: 'CurrentBooks'});
-Book.belongsToMany(User, {through: 'CurrentBooks'});
+var BookJoin = sequelize.define('BookJoin', {
+  favorite: Sequelize.BOOLEAN,
+  current: Sequelize.BOOLEAN
+});
+User.belongsToMany(Book, {through: {model: BookJoin}});
+Book.belongsToMany(User, {through: {model: BookJoin}});
 
 /*
  * Initialize join table between users and their bookmarks.
@@ -54,8 +54,11 @@ User.belongsToMany(User, {as: 'Bookmark', through: "Bookmarks"});
 
 /*
  * Create tables if they don't already exist.
+ * Use {force: true} to wipe tables each time you restart node.
+ * Good for testing, but BE CAREFUL.
  */
-sequelize.sync({force: true});
+sequelize.sync();
 
 exports.User = User;
 exports.Book = Book;
+exports.BookJoin = BookJoin;
