@@ -7,7 +7,11 @@ var Sequelize = require('sequelize');
  * Requires 'url' and 'sequelize' for more advanced query operations
  * such as parsing parameters from a request URL and using 'or' queries.
  *
- * GET: Returns all books in database.
+ * GET: Accepts the follow queries:
+ *         'id' - Return book by INTERNAL Id
+ *         'fid' - Return users who have favorited a book by INTERNAL Id
+ *         'cid' - Return users who are currently reading a book by INTERNAL Id
+ *         '' - Returns all books
  *
  * POST: TODO -- Recieves bookId from client, pulls info from API and stores
  *
@@ -21,21 +25,39 @@ var Sequelize = require('sequelize');
 module.exports = {
   get: function (req, res) {
     if (req.query.id) {
-      return db.User.findById(req.query.id)
-      .then(function (user) {
-        return user.getFavoriteBook();
-      })
-      .then(function (result) {
-        res.json(result);
+      db.Book.findById(req.query.id)
+      .then(function (book) {
+        res.json(book);
       }).catch(function (err) {
-        console.error('Error getting user with Id: ', req.query.id, " Error: ", err);
+        console.error('Error getting book with Id: ', req.query.id, " Error: ", err);
+      });
+    }
+    else if (req.query.fid) {
+      db.Book.findById(req.query.fid)
+      .then(function (book) {
+        return book.getFavoriteUser();
+      }).then(function (users) {
+        res.json(users);
+      }).catch(function (err) {
+        console.error('Error getting favorite users of book with Id: ', req.query.gid, " Error: ", err);
+      });
+    }
+    else if (req.query.cid) {
+      db.Book.findById(req.query.cid)
+      .then(function (book) {
+        return book.getCurrentUser();
+      }).then(function (users) {
+        res.json(users);
+      }).catch(function (err) {
+        console.error('Error getting current users of book with Id: ', req.query.gid, " Error: ", err);
       });
     }
     else { 
-      db.Book.findAll().then(function (books) {
+      db.Book.findAll()
+      .then(function (books) {
         res.json(books);
       }).catch(function (err) {
-        console.error('Error getting books: ', err);
+        console.error('Error getting all books: ', err);
       });
     }
   },
