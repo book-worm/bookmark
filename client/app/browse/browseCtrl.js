@@ -2,8 +2,8 @@ angular.module('browse', [])
 
 .controller('browseCtrl', function ($scope, UserData) {
   UserData.getUser()
-    .then(function(user){
-      $scope.user = user;
+    .then(function(users){
+      $scope.allUsers = users;
   });
 
 });
