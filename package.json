@@ -16,12 +16,13 @@
   },
   "dependencies": {
     "body-parser": "^1.14.1",
+    "bower": "0.6.x",
     "express": "^4.13.3",
     "morgan": "^1.6.1",
+    "passport-goodreads": "^1.0.0",
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^3.13.0",
-    "bower": "0.6.x"
+    "sequelize": "^3.13.0"
   },
   "repository": {
     "type": "git",

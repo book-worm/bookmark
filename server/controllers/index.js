@@ -10,5 +10,6 @@
  */
 module.exports = {
   users: require('./usersRoutes'),
-  books: require('./booksRoutes')
+  books: require('./booksRoutes'),
+  "auth/goodreads": require('./authRoutes')
 };
