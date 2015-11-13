@@ -1,6 +1,16 @@
 body {
   background-image: url("http://blog.athomearkansas.com/sites/athomearkansas.com/files/images/2/gallery_images/pug-n-shelves.jpg");
 }
+
+.footer {
+  background-color: #484787;
+}
+
+.footerText {
+    color: white;
+  margin: 0 auto;
+}
+
 .center {
   text-align: center;
   color: white;
