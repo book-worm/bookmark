@@ -1,16 +1,17 @@
 <div>
   
-  <img src="{{user.img_url}}">
-  <button>Flip</button>
-  <button>Bookmark</button>
+  <img ng-src="{{currentPotential.profile_img_url}}">
+  
+  <h4>Name</h4>
+  <div>{{currentPotential.username}} </div>
+  <h4>Favorite Books</h4>
+  <div>{{currentPotential.favorites}}</div>
+  <h4>Currently Reading</h4>
+  <div>{{currentPotential.current}}</div>
 
-  <p>{{user.username}}</p>
-  <h2>Favorite Books</h2>
-  <span ng-reapeat='book in user.favorites'>
-    {{book}},
-  </span>
-  <h2>Currently Reading</h2>
-  <span ng-reapeat='book in user.current'>
-    {{book}},
-  </span>
+  <div>
+    <button ng-click="flip()">Flip</button>
+    <button ng-click="bookmark()">Bookmark</button>
+  </div>
+
 </div>

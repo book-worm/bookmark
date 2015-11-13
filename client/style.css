@@ -1,9 +1,10 @@
 body {
-  background-image: url("http://blog.athomearkansas.com/sites/athomearkansas.com/files/images/2/gallery_images/pug-n-shelves.jpg");
+  /*background-image: url("http://blog.athomearkansas.com/sites/athomearkansas.com/files/images/2/gallery_images/pug-n-shelves.jpg");*/
+  background-color: #B3CCE1;
 }
 
 .footer {
-  background-color: #484787;
+  background-color: #2D475C;
 }
 
 .footerText {
