@@ -19,6 +19,7 @@
     "bower": "0.6.x",
     "express": "^4.13.3",
     "morgan": "^1.6.1",
+    "passport": "^0.3.2",
     "passport-goodreads": "^1.0.0",
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
