@@ -2,10 +2,6 @@ var passport = require('passport');
 var GoodreadsStrategy = require('passport-goodreads').Strategy;
 var db = require('./db');
 
-var done = function(err, user) {
-
-};
-
 passport.use(new GoodreadsStrategy({
     consumerKey: KEY,
     consumerSecret: SECRET,
