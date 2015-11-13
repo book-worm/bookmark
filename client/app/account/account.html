@@ -4,3 +4,19 @@
   <span>edit info on goodreads</span>
   <p>cancel account<p>
 </div>
+<!-- If goodread does not provide gender info provide settings here
+also add filter preferences here  -->
+<div>
+  
+  <img src="{{user.img_url}}">
+
+  <p>{{user.username}}</p>
+  <h2>Favorite Books</h2>
+  <span ng-reapeat='book in user.favorites'>
+    {{book}},
+  </span>
+  <h2>Currently Reading</h2>
+  <span ng-reapeat='book in user.current'>
+    {{book}},
+  </span>
+</div>

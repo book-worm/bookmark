@@ -3,20 +3,24 @@ angular.module('app.services', [])
 * A service for interacting with users in the database
 */
   .service('UserData', function ($http) {
+
     /*
-    * Makes get request to get all the Users
-    * @return a promise with the all the current users
+    * Makes get request to get all users
+    * @return a promise
     */
+
     this.getAllUsers = function(){
       return $http({
         method:'GET',
-        url:'/users'
-      }).then(function(data){
-        return data;
+        url: '/users',
+        data: JSON.stringify({ goodreadsId : user_id })
+      }).then(function(allUsers){
+        return allUsers;
       }).catch(function(err){
         console.error(err);
       });
     }
+
     /*
     * Makes post request to create a new user
     * @param user_id the user id of the user
@@ -33,41 +37,21 @@ angular.module('app.services', [])
         console.error(err);
       });
     }
-
-  })
-  /*
-  * A service for interacting with books in the database
-  */
-  .service('Books', function ($http){
     /*
-    * Makes get request for all Books
+    * Gets data for a User from database
     * @return a promise
     */
-    this.getAllBooks = function(){
-      return $http({
+    this.getUser = function(user_id){
+        return $http({
           method:'GET',
-          url: '/books'
-        }).then(function(data){
-          return data;
-        }).catch(function (err){
+          url:'/users?id=' + user_id
+        }).then(function(user){
+          return user;
+        }).catch(function(err){
           console.error(err);
         });
-      }
-      /*
-      * Makes post request to add a book to the database
-      * @bookId the id for the book you want to add
-      * @return a promise
-      */
-    this.addBook = function(bookId){
-      return $http({
-          method:'POST',
-          url: '/books',
-          data: { bookId : bookId }
-        }).then(function(data){
-          return data;
-        }).catch(function (err){
-          console.error(err);
-        });
-      }
+    }
+
+  })
 
   });
