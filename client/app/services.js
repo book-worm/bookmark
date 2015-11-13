@@ -52,6 +52,4 @@ angular.module('app.services', [])
         });
     }
 
-  })
-
   });
