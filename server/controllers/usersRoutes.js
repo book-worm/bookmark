@@ -77,24 +77,27 @@ module.exports = {
         console.error('Error getting bookmarks of user with Id: ', req.query.bid, " Error: ", err);
       });
     }
-    else if (req.query.sid) {
+    else if (req.query.sid) { // This is a large query, so pay attention.
+      // Three variables to store information from async calls. We need bookmarks and rejects
+      // for the final query. 'bookmarks' and 'rejects' will be arrays of Ids (just a ints).
       var sourceUser;
       var bookmarks = [req.query.sid]; // Need to filter the user too, might as well toss it here
       var rejects = [];
       db.User.findById(req.query.sid)
-      .then(function (user) {
+      .then(function (user) { // Get the sourceUser
         sourceUser=user;
         return sourceUser.getBookmark();
-      }).then(function (bUsers) {
+      }).then(function (bUsers) { // Get the ids of sourceUser's bookmarks and store them
         for (var i=0; i<bUsers.length; i++) {
           bookmarks.push(bUsers[i].id);
         }
         return sourceUser.getReject();
       })
-      .then(function (rUsers) {
+      .then(function (rUsers) { // Get the ids of sourceUser's rejects (losers) and store them
         for (var i=0; i<rUsers.length; i++) {
           rejects.push(rUsers[i].id);
         }
+        // Here we go: Find all users who's Ids are neither in bookmarks or rejects
         return db.User.findAll({where: {id : {$notIn: bookmarks.concat(rejects)}}});
       })
       .then(function (searchables) {
