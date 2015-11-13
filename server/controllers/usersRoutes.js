@@ -19,7 +19,7 @@ var Sequelize = require('sequelize');
  * POST: TODO -- Receives userId from client, performs API call to retrieve profile data, 
  * then inserts into database.
  *
- * PUT: TODO -- Add bookmarks and rejects. Expects the following in req.body:
+ * PUT: Add bookmarks and rejects. Expects the following in req.body:
  *         'userId' - Id of the user making the selection
  *         'targetId' - Id of the user being selected
  *         'choice' - 'B' or 'R' for bookmark or reject 
