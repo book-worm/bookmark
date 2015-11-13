@@ -1,1 +1,16 @@
-<div>BROWSING book lovers!</div>
+<div>
+  
+  <img src="{{user.img_url}}">
+  <button>Flip</button>
+  <button>Bookmark</button>
+
+  <p>{{user.username}}</p>
+  <h2>Favorite Books</h2>
+  <span ng-reapeat='book in user.favorites'>
+    {{book}},
+  </span>
+  <h2>Currently Reading</h2>
+  <span ng-reapeat='book in user.current'>
+    {{book}},
+  </span>
+</div>
