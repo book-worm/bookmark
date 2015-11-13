@@ -1,5 +1,5 @@
 var passport = require('passport');
-var goodreads = require('passport-goodreads').Strategy;
+var GoodreadsStrategy = require('passport-goodreads').Strategy;
 var db = require('./db');
 
 var done = function(err, user) {
@@ -24,4 +24,4 @@ passport.use(new GoodreadsStrategy({
   }
 ));
 
-exports.passport = passport;
+module.exports = passport;
