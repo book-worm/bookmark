@@ -21,11 +21,22 @@ var Sequelize = require('sequelize');
  */
 module.exports = {
   get: function (req, res) {
-    db.User.findAll().then(function (users) {
-      res.json(users);
-    }).catch(function (err) {
-      console.error('Error getting users: ', err);
-    });
+    if (req.query.id) {
+      db.User.findById(req.query.id)
+      .then(function (user) {
+        res.json(user);
+      }).catch(function (err) {
+        console.error('Error getting user with Id: ', req.query.id, " Error: ", err);
+      });
+    }
+    else { 
+      db.User.findAll()
+      .then(function (users) {
+        res.json(users);
+      }).catch(function (err) {
+        console.error('Error getting users: ', err);
+      });
+    }
   },
   post: function (req, res) {
     // TODO: REFACTOR TO MAKE API REQUEST

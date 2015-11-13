@@ -1,3 +1,5 @@
+var passport = require('passport');
+
 module.exports = {
   get: function() {
     passport.authenticate('goodreads');
