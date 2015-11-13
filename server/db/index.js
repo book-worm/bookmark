@@ -61,4 +61,3 @@ sequelize.sync();
 
 exports.User = User;
 exports.Book = Book;
-exports.BookJoin = BookJoin;
