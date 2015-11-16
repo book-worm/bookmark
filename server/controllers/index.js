@@ -11,5 +11,6 @@
 module.exports = {
   users: require('./usersRoutes'),
   books: require('./booksRoutes'),
-  "auth/goodreads": require('./authRoutes')
+  "auth/goodreads": require('./authRoutes'),
+  "auth/goodreads/callback": require('./authCallbackRoutes'),
 };

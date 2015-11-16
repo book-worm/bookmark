@@ -18,9 +18,12 @@
     "body-parser": "^1.14.1",
     "bower": "0.6.x",
     "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "jsonwebtoken": "^5.4.1",
     "morgan": "^1.6.1",
     "passport": "^0.3.2",
     "passport-goodreads": "^1.0.0",
+    "path": "^0.12.7",
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.13.0"
