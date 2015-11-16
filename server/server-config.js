@@ -36,7 +36,7 @@ app.get('/logout', function (req, res) {
 //   console.log("process.env.times: ", process.env.NODE_ENV);
 //   var result = "body";
 //   var times = process.env.TIMES || 5;
-//   for (i=0; i < times; i++)
+//   for (i=0; i < times; ig++)
 //     result += "b";
 //   response.sendStatus(result);
 // });
