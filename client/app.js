@@ -8,8 +8,9 @@ angular.module('app', [
   'bookmarks'
   ])
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/');
+  $locationProvider.html5Mode(true);
 
   $stateProvider
     .state('login', {
