@@ -13,7 +13,7 @@ module.exports.setup = function (passport, db){
     db.User.findAll({where: { goodreadsId: profile.id }}).then(function(user) {
       if (!user[0]) {
         userCreator(profile, function (newUser) {
-          return done(null, newUser);  
+          return done(null, newUser);
         });
       }
       else {
@@ -35,5 +35,5 @@ module.exports.setup = function (passport, db){
       done(err, user);
     });
   });
-
+  
 };
