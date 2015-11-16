@@ -1,16 +1,14 @@
 var passport = require('passport');
 
 module.exports = {
-  get: function() {
-    passport.authenticate('goodreads');
+  get: passport.authenticate('goodreads'),
+  post: function(req, res) {
+    res.redirect('/');
   },
-  post: function() {
-    
+  put: function(req, res) {
+    res.redirect('/');
   },
-  put: function() {
-    
-  },
-  delete: function() {
-    
+  delete: function(req, res) {
+    res.redirect('/');
   }
 };
