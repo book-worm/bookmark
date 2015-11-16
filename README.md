@@ -58,3 +58,7 @@ https://waffle.io/hard-cover/bookup
 ## git-hub group
 
 https://github.com/hard-cover
+
+### jQuery plugin
+
+http://tympanus.net/Development/BookBlock/index.html
