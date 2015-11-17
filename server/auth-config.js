@@ -1,6 +1,6 @@
 var GoodreadsStrategy = require('passport-goodreads').Strategy;
 var userCreator = require('./userCreator.js');
-
+var currentUser = require('../db/currentUser.js');
 // var cbURL = "";
 
 // if (process.env.NODE_ENV === production) {
