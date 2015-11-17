@@ -1,6 +1,6 @@
 angular.module('browse', ['app.services'])
 
-.controller('browseCtrl', function ($scope, UserData) {
+.controller('browseCtrl', function ($scope, UserData, $cookieStore) {
 
   $scope.currentIndex = 0;
 
@@ -29,7 +29,7 @@ angular.module('browse', ['app.services'])
     });
   };
 
-  UserData.getPotentials(1) // INSERT MYUSERID FROM TOKEN HERE LATER, this gets all my potential matches
+  UserData.getPotentials(Number($cookieStore.get('userId'))) // INSERT MYUSERID FROM TOKEN HERE LATER, this gets all my potential matches
   .then(function(potentials){
       $scope.allPotentials = potentials;
       console.log("potentials: ", $scope.allPotentials);
