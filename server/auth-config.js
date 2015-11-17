@@ -29,10 +29,12 @@ module.exports.setup = function (passport, db){
     db.User.findAll({where: { goodreadsId: profile.id }}).then(function(user) {
       if (!user[0]) {
         userCreator(profile, function (newUser) {
+          currentUser.userData = newUser;
           return done(null, newUser);
         });
       }
       else {
+        currentUser.userData = user[0];
         return done(null, user[0]);
       }
     }).catch(function(err) {
