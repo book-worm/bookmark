@@ -12,7 +12,7 @@ var app = express();
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(parser.json());
-app.use(session({secret: 'shhhh.....', resave: false, saveUninitialized: false}));
+app.use(session({secret: 'shhhh.....', resave: false, saveUninitialized: false, cookie: {httpOnly: false}, key: 'cookie.sid'}));
 app.use(passport.initialize());
 app.use("/", router);
 
@@ -22,6 +22,14 @@ passportConfig.setup(passport, db);
 // Serve the client files
 app.use(express.static(__dirname + "/../client"));
 
+
+app.get('/logout', function (req, res) {
+    req.logout();
+    res.clearCookie('status');
+    res.redirect('/');
+  });
+
+
 /*
 * All other routes should redirect to the index.html
 *
@@ -30,7 +38,7 @@ app.use(express.static(__dirname + "/../client"));
 *
 */
 app.route('/*')
-  .get(function(req, res) {
+  .get(function (req, res) {
     res.sendFile(path.resolve(__dirname + '/../client/index.html'));
   });
 

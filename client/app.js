@@ -5,7 +5,8 @@ angular.module('app', [
   'browse',
   'account',
   'chat',
-  'bookmarks'
+  'bookmarks',
+  'ngCookies'
   ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
@@ -25,21 +26,21 @@ angular.module('app', [
         }
       }
     })
-    .state('logout', {
-      url: '/logout', // same as login page, but shows logout message where navbar would be
-      views: {
-        nav: {
-          templateUrl: '/app/logout/logout.html'
-        },
-        content: {
-          templateUrl: '/app/login/login.html',
-          controller: 'loginCtrl'
-        },
-        footer: {
-          templateUrl: '/app/footer/footer.html'
-        }
-      }
-    })
+    // .state('logout', {
+    //   url: '/logout', // same as login page, but shows logout message where navbar would be
+    //   views: {
+    //     nav: {
+    //       templateUrl: '/app/logout/logout.html'
+    //     },
+    //     content: {
+    //       templateUrl: '/app/login/login.html',
+    //       controller: 'loginCtrl'
+    //     },
+    //     footer: {
+    //       templateUrl: '/app/footer/footer.html'
+    //     }
+    //   }
+    // })
     .state('browse', {
       url: '/browse',
       views: {
@@ -50,7 +51,8 @@ angular.module('app', [
           templateUrl: '/app/browse/browse.html',
           controller: 'browseCtrl'
         }
-      }
+      },
+      authenticate : true
     })
     .state('bookmarks', {
       url: '/bookmarks',
@@ -62,7 +64,8 @@ angular.module('app', [
           templateUrl: '/app/bookmarks/bookmarks.html',
           controller: 'bookmarksCtrl'
         }
-      }
+      },
+      authenticate : true
     })
     .state('chat', {
       url: '/chat',
@@ -74,7 +77,8 @@ angular.module('app', [
           templateUrl: '/app/chat/chat.html',
           controller: 'chatCtrl'
         }
-      }
+      },
+      authenticate : true
     })
     .state('account', {
       url: '/account',
@@ -86,6 +90,23 @@ angular.module('app', [
           templateUrl: '/app/account/account.html',
           controller: 'accountCtrl'
         }
-      }
+      },
+      authenticate : true
     });
-});
+})
+
+  .run(function ($rootScope, $state, Auth) {
+
+    // Redirect to login if route requires auth and you're not logged in
+    $rootScope.$on('$stateChangeStart', function (event, next) {
+      Auth.isLoggedIn(function(loggedIn) {
+        if (next.authenticate && !loggedIn) {
+          event.preventDefault();
+          $state.transitionTo('login');
+        }
+      });
+    });
+  });
+
+
+

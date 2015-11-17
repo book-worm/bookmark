@@ -1,7 +1,8 @@
-var passport = require('passport');
-
 module.exports = {
-  get: passport.authenticate('goodreads', { failureRedirect: '/login' , successRedirect: '/success' }),
+  get: function( req, res){
+    res.cookie('status', JSON.stringify('true'));
+    res.redirect('/browse');
+  },
   post: function(req, res) {
     res.redirect('/');
   },
