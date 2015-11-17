@@ -6,7 +6,7 @@ var router = require('./routes.js');
 var passport = require('passport');
 var path = require('path');
 var session = require('express-session');
-var passportConfig = require('./auth-config')
+var passportConfig = require('./auth-config');
 var app = express();
 
 // Logging and parsing

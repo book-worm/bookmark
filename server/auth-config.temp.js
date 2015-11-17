@@ -1,4 +1,5 @@
 var GoodreadsStrategy = require('passport-goodreads').Strategy;
+var userCreator = require('./userCreator.js');
 
 module.exports.setup = function (passport, db){
 
@@ -8,12 +9,18 @@ module.exports.setup = function (passport, db){
     callbackURL: "http://localhost:5000/auth/goodreads/callback"
   },
     function(token, tokenSecret, profile, done) {
-    db.User.findOrCreate({where: { goodreadsId: profile.id }}).then(function(user) {
-      return done(null, user[0]);
+    db.User.findAll({where: { goodreadsId: profile.id }}).then(function(user) {
+      if (!user[0]) {
+        userCreator(profile, function (newUser) {
+          return done(null, newUser);  
+        });
+      }
+      else {
+        return done(null, user[0]);
+      }
     }).catch(function(err) {
       return done(err, null);
     });
-  }
+    }
   ));
-
-}
+};

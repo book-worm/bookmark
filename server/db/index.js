@@ -39,7 +39,6 @@ var Book = sequelize.define('Book', {
  * Initialize join table between users and their favorite books.
  * This was such a PITA to figure out.
  */
-
 User.belongsToMany(Book, {as: "FavoriteBook", through: "FavoriteBooks"});
 Book.belongsToMany(User, {as: "FavoriteUser", through: "FavoriteBooks"});
 

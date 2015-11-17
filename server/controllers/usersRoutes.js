@@ -1,6 +1,7 @@
 var db = require('../db');
 var url = require('url');
 var Sequelize = require('sequelize');
+var request = require('request');
 
 /**
  * Router for all requests to '/user'.
@@ -134,8 +135,7 @@ module.exports = {
     }
   },
   post: function (req, res) {
-    // TODO: REFACTOR TO MAKE API REQUEST
-    
+    // WE'RE NOT EVEN USING THIS AT THE MOMENT!?!?!?!?!?
     db.User.create({
       goodreadsId: req.body.goodreadsId,
       username: req.body.username,
