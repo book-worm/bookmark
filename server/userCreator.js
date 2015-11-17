@@ -12,7 +12,7 @@ var parseString = require('xml2js').parseString;
 var db = require('./db');
 var passport = require('passport');
 
-var API_KEY; // SET THIS!!!!!!!!!!!!!!!!!!!!
+var API_KEY = process.env.CONSUMERKEY;
 
 
 module.exports = function(profile, callback) {
