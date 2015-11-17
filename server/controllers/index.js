@@ -13,4 +13,5 @@ module.exports = {
   books: require('./booksRoutes'),
   "auth/goodreads": require('./authRoutes'),
   "auth/goodreads/callback": require('./authCallbackRoutes'),
+  success : require('./successRoutes')
 };

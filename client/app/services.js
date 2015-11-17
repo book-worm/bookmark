@@ -101,6 +101,17 @@ angular.module('app.services', [])
         });
     };
 
-  });
+  })
     // Two ways to make requests. Above, we make requests about the user to get their books. Here, you can add a service 
     // for books that can get all users that like those books.
+
+
+  .service('Auth', function ($window, $cookieStore) {
+    this.isLoggedIn = function(cb) {
+      if($cookieStore.get('status')) {
+        return cb(true);
+      } else {
+        return cb(false);
+      }
+    }
+  })
