@@ -6,7 +6,8 @@ var router = require('./routes.js');
 var passport = require('passport');
 var path = require('path');
 var session = require('express-session');
-var passportConfig = require('./auth-config');
+var passportConfig = require('./auth-config'); // FILE DOESNT EXIST IN DEPLOYMENT/GIT. CAUSES ERROR
+var dotenv  = require('dotenv').load();
 var app = express();
 
 // Logging and parsing
@@ -22,12 +23,23 @@ passportConfig.setup(passport, db);
 // Serve the client files
 app.use(express.static(__dirname + "/../client"));
 
-
 app.get('/logout', function (req, res) {
     req.logout();
     res.clearCookie('status');
     res.redirect('/');
   });
+
+// EXAMPLE FOR HEROKU ENV VAR TEST
+
+// app.get('/times', function(request, response) {
+
+//   console.log("process.env.times: ", process.env.NODE_ENV);
+//   var result = "body";
+//   var times = process.env.TIMES || 5;
+//   for (i=0; i < times; ig++)
+//     result += "b";
+//   response.sendStatus(result);
+// });
 
 
 /*

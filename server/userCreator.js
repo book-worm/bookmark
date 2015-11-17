@@ -44,7 +44,10 @@ var assignCurrentBooks = function(user, callback) {
   return request('https://www.goodreads.com/review/list/'+user.goodreadsId+'?format=xml&key='+API_KEY+'&v=2&shelf=currently-reading', function (error, response, body) {
     parseString(body, function (err, result) {
       var books = result.GoodreadsResponse.reviews[0].review;
-      var countdown = books.length;
+      var countdown = 0;
+      if (books) {
+        countdown = books.length;
+      }
       for (var i=0; i<books.length; i++) {
         (function (i) {
           db.Book.create({
