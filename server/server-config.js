@@ -6,7 +6,7 @@ var router = require('./routes.js');
 var passport = require('passport');
 var path = require('path');
 var session = require('express-session');
-var passportConfig = require('./auth-config')
+var passportConfig = require('./auth-config');
 var app = express();
 
 // Logging and parsing
@@ -14,6 +14,7 @@ app.use(morgan('dev'));
 app.use(parser.json());
 app.use(session({secret: 'shhhh.....', resave: false, saveUninitialized: false}));
 app.use(passport.initialize());
+
 app.use("/", router);
 
 // Setting up Passport with valid keys

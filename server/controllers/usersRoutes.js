@@ -1,6 +1,7 @@
 var db = require('../db');
 var url = require('url');
 var Sequelize = require('sequelize');
+var request = require('request');
 
 /**
  * Router for all requests to '/user'.
@@ -134,7 +135,11 @@ module.exports = {
     }
   },
   post: function (req, res) {
-    // TODO: REFACTOR TO MAKE API REQUEST
+    request('https://www.goodreads.com/api/auth_user', function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log(body) // Print the google web page.
+      }
+    });
     
     db.User.create({
       goodreadsId: req.body.goodreadsId,
