@@ -1,5 +1,6 @@
 var GoodreadsStrategy = require('passport-goodreads').Strategy;
 var userCreator = require('./userCreator.js');
+var currentUser = require('../db/currentUser.js');
 
 module.exports.setup = function (passport, db){
 
@@ -16,6 +17,7 @@ module.exports.setup = function (passport, db){
         });
       }
       else {
+        currentUser.userData = user[0];
         return done(null, user[0]);
       }
     }).catch(function(err) {
@@ -33,5 +35,5 @@ module.exports.setup = function (passport, db){
       done(err, user);
     });
   });
-  
+
 };
