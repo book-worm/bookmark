@@ -14,7 +14,6 @@ app.use(morgan('dev'));
 app.use(parser.json());
 app.use(session({secret: 'shhhh.....', resave: false, saveUninitialized: false}));
 app.use(passport.initialize());
-
 app.use("/", router);
 
 // Setting up Passport with valid keys
