@@ -13,7 +13,7 @@ var userCreator = require('./userCreator.js');
 // var cbURL = "";
 
 // if (process.env.NODE_ENV === production) {
-//   cbURL = "http://bookups.herokuapp.coma/auth/goodreads/callback";
+//   cbURL = "http://bookups.herokuapp.com/auth/goodreads/callback";
 // } else if (process.env.NODE_ENV === development) {
 //   cbURL = "http://localhost:5000/auth/goodreads/callback";
 // }
