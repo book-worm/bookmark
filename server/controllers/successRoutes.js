@@ -1,8 +1,9 @@
+var currentUser = require('../db/currentUser.js');
+
 module.exports = {
   get: function( req, res){
-    console.log('in succsees!!!!!!!!!!!!!!')
-    console.log(res);
     res.cookie('status', JSON.stringify('true'));
+    res.cookie('userId', JSON.stringify(currentUser.userData.id));
     res.redirect('/browse');
   },
   post: function(req, res) {

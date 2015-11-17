@@ -1,6 +1,6 @@
 angular.module('browse', ['app.services'])
 
-.controller('browseCtrl', function ($scope, UserData) {
+.controller('browseCtrl', function ($scope, UserData, $cookieStore) {
 
   $scope.currentIndex = 0;
 
@@ -29,7 +29,7 @@ angular.module('browse', ['app.services'])
     });
   };
 
-  UserData.getPotentials(1) // INSERT MYUSERID FROM TOKEN HERE LATER, this gets all my potential matches
+  UserData.getPotentials(Number($cookieStore.get('userId'))) // INSERT MYUSERID FROM TOKEN HERE LATER, this gets all my potential matches
   .then(function(potentials){
       $scope.allPotentials = potentials;
       console.log("potentials: ", $scope.allPotentials);
@@ -67,14 +67,14 @@ angular.module('browse', ['app.services'])
 
   $scope.flip = function(){
     // POST to server to add currentUser's id to loggedin-user's reject list
-    UserData.addRelation(UserData.myUserId, $scope.currentPotential.id, 'R');
+    UserData.addRelation(Number($cookieStore.get('userId')), $scope.currentPotential.id, 'R');
     // currentIndex++
     $scope.currentIndex++;
     $scope.next($scope.currentIndex);
   };
   $scope.bookmark = function(){
     // POST to server to add currentUser's id to loggedin-user's bookmark's
-    UserData.addRelation(UserData.myUserId, $scope.currentPotential.id, 'B');
+    UserData.addRelation(Number($cookieStore.get('userId')), $scope.currentPotential.id, 'B');
     // currentIndex++
     $scope.currentIndex++;
     $scope.next($scope.currentIndex);
