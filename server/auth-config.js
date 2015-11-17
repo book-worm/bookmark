@@ -15,7 +15,6 @@ module.exports.setup = function (passport, db){
     consumerKey: process.env.CONSUMERKEY,
     consumerSecret: process.env.CONSUMER_SECRET,
     callbackURL: "http://bookups.herokuapp.com/auth/goodreads/callback" // use `cbURL` when the envs are setup correctly. right now, local env. is also production
-
   },
     function(token, tokenSecret, profile, done) {
     db.User.findAll({where: { goodreadsId: profile.id }}).then(function(user) {
