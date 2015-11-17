@@ -69,3 +69,4 @@ http://tympanus.net/Development/BookBlock/index.html
 * logout functionality: implement sessions (right now, we just use incognito windows to login multiple people and test /users with postman)
 * refactor server side controllers to have a utils file
 * grab top rated read books to create favorites section
+* setup local heroku web environment so that it uses the correct env. variables and callback.

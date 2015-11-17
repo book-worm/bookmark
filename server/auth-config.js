@@ -9,6 +9,15 @@ var userCreator = require('./userCreator.js');
 //   cbURL = "http://localhost:5000/auth/goodreads/callback";
 // }
 
+
+// var cbURL = "";
+
+// if (process.env.NODE_ENV === production) {
+//   cbURL = "http://bookups.herokuapp.coma/auth/goodreads/callback";
+// } else if (process.env.NODE_ENV === development) {
+//   cbURL = "http://localhost:5000/auth/goodreads/callback";
+// }
+
 module.exports.setup = function (passport, db){
 
   passport.use(new GoodreadsStrategy({
