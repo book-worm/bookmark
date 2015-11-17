@@ -62,3 +62,10 @@ https://github.com/hard-cover
 ### jQuery plugin
 
 http://tympanus.net/Development/BookBlock/index.html
+
+### Legacy
+
+* many users don't have usernames, so we need to allow them to add a name that they can display to our DB
+* logout functionality: implement sessions (right now, we just use incognito windows to login multiple people and test /users with postman)
+* refactor server side controllers to have a utils file
+* grab top rated read books to create favorites section

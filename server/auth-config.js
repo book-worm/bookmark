@@ -1,5 +1,5 @@
 var GoodreadsStrategy = require('passport-goodreads').Strategy;
-
+var userCreator = require('./userCreator.js');
 
 // var cbURL = "";
 
@@ -15,14 +15,22 @@ module.exports.setup = function (passport, db){
     consumerKey: process.env.CONSUMERKEY,
     consumerSecret: process.env.CONSUMER_SECRET,
     callbackURL: "http://bookups.herokuapp.com/auth/goodreads/callback" // use `cbURL` when the envs are setup correctly. right now, local env. is also production
+
   },
     function(token, tokenSecret, profile, done) {
-    db.User.findOrCreate({where: { goodreadsId: profile.id }}).then(function(user) {
-      return done(null, user[0]);
+    db.User.findAll({where: { goodreadsId: profile.id }}).then(function(user) {
+      if (!user[0]) {
+        userCreator(profile, function (newUser) {
+          return done(null, newUser);
+        });
+      }
+      else {
+        return done(null, user[0]);
+      }
     }).catch(function(err) {
       return done(err, null);
     });
-  }
+    }
   ));
 
   passport.serializeUser(function(user, done) {
