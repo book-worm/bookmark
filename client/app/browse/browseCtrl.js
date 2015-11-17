@@ -67,14 +67,14 @@ angular.module('browse', ['app.services'])
 
   $scope.flip = function(){
     // POST to server to add currentUser's id to loggedin-user's reject list
-    UserData.addRelation(UserData.myUserId, $scope.currentPotential.id, 'R');
+    UserData.addRelation(Number($cookieStore.get('userId')), $scope.currentPotential.id, 'R');
     // currentIndex++
     $scope.currentIndex++;
     $scope.next($scope.currentIndex);
   };
   $scope.bookmark = function(){
     // POST to server to add currentUser's id to loggedin-user's bookmark's
-    UserData.addRelation(UserData.myUserId, $scope.currentPotential.id, 'B');
+    UserData.addRelation(Number($cookieStore.get('userId')), $scope.currentPotential.id, 'B');
     // currentIndex++
     $scope.currentIndex++;
     $scope.next($scope.currentIndex);
