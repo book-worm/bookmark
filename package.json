@@ -6,7 +6,7 @@
   "author": "Gelatinous Stump",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "bower install; node server/server.js",
     "test": "mocha server/spec"
   },
   "devDependencies": {
