@@ -29,7 +29,7 @@ angular.module('browse', ['app.services'])
     });
   };
 
-  UserData.getPotentials(2) // INSERT MYUSERID FROM TOKEN HERE LATER, this gets all my potential matches
+  UserData.getPotentials(1) // INSERT MYUSERID FROM TOKEN HERE LATER, this gets all my potential matches
   .then(function(potentials){
       $scope.allPotentials = potentials;
       console.log("potentials: ", $scope.allPotentials);

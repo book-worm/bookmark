@@ -135,12 +135,7 @@ module.exports = {
     }
   },
   post: function (req, res) {
-    request('https://www.goodreads.com/api/auth_user', function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log(body) // Print the google web page.
-      }
-    });
-    
+    // WE'RE NOT EVEN USING THIS AT THE MOMENT!?!?!?!?!?
     db.User.create({
       goodreadsId: req.body.goodreadsId,
       username: req.body.username,
