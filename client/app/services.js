@@ -4,8 +4,6 @@ angular.module('app.services', [])
 */
   .service('UserData', function ($http) {
 
-    this.myUserId = 1; // GET MYUSERID FROM TOKEN ON WINDOW
-
     this.getPotentials = function(myUserId){
       return $http({
         method: 'GET',
