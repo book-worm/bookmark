@@ -17,8 +17,11 @@ var request = require('request');
  *         'sid' - Return searchable (not bookmark or reject) of a user by INTERNAL Id
  *         '' - Returns all users
  *
- * POST: TODO -- Receives userId from client, performs API call to retrieve profile data, 
- * then inserts into database.
+ * POST: TODO/TESTING -- This SHOULD be making an API call and retreiving user data. However,
+ *       we're doing this in "userCreator.js." If you're looking to improve upon this structure,
+ *       split off the functions which interact with the DB into a separate file, and just route
+ *       the request types here. This will let you by DRY in regards to this file and "userCreator.js."
+ *       For now, you can use this for testing via Postman!
  *
  * PUT: Add bookmarks and rejects. Expects the following in req.body:
  *         'userId' - Id of the user making the selection
@@ -135,7 +138,7 @@ module.exports = {
     }
   },
   post: function (req, res) {
-    // WE'RE NOT EVEN USING THIS AT THE MOMENT!?!?!?!?!?
+    // WE'RE NOT EVEN USING THIS AT THE MOMENT!
     db.User.create({
       goodreadsId: req.body.goodreadsId,
       username: req.body.username,
