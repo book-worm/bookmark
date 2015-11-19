@@ -42,7 +42,7 @@ npm install
 bower install
 ```
 
-### Roadmap
+### Greenfield Group
 
 ## Waffle.io
 
@@ -51,6 +51,10 @@ https://waffle.io/hard-cover/bookup
 ## git-hub group
 
 https://github.com/hard-cover
+
+## Greenfield deployment
+
+https://bookups.herokuapp.com
 
 ### Legacy
 
@@ -65,6 +69,10 @@ https://github.com/hard-cover
 We began to look into implementing the BookBlock jQuery plugin to get a page flipping effect when someone "flips" a potential match. (We also imagined a bookmarking effect for bookmarking.) You can read up on the plugin here: http://tympanus.net/Development/BookBlock/index.html
 Note that the js and css bookblock files are already in client/lib and in the index.html, but additional components may need to be inserted. There is also commented out code in the index.html for testing the jQuery plugin.
 
+## .env
+The .temp.env should be renamed to .env and you should fill in the github username you're using for heroku, along with the consumerkey and consumer secret which we will provide to you. The database URL....
+The .env file is for use with heroku local web, but it doesn't work--check out the notes in the auth-config file as well for our thoughts on how to deploy locally. For online deployment, just make sure you setup the config variables in your online account settings.
+As for the database URL, you'll want to create your own local db url. More info here: 
 
 ### Issues
 * Bower vs Heroku:
