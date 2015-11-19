@@ -1,29 +1,28 @@
 var GoodreadsStrategy = require('passport-goodreads').Strategy;
 var userCreator = require('./userCreator.js');
 var currentUser = require('./db/currentUser.js');
-// var cbURL = "";
-
-// if (process.env.NODE_ENV === production) {
-//   cbURL = "http://bookups.herokuapp.com/auth/goodreads/callback";
-// } else if (process.env.NODE_ENV === development) {
-//   cbURL = "http://localhost:5000/auth/goodreads/callback";
-// }
 
 
-// var cbURL = "";
+/**
+* Environmental variables have been setup to work when deployed online with Heroku
+* However, they do not work locally. You may end up using some code like the below in auth-config to implement `local heroku web` functionality
+* var cbURL = "";
+* 
+* if (process.env.NODE_ENV === production) {
+*   cbURL = "http://bookups.herokuapp.com/auth/goodreads/callback";
+* } else if (process.env.NODE_ENV === development) {
+*   cbURL = "http://localhost:5000/auth/goodreads/callback";
+* }
+*/
 
-// if (process.env.NODE_ENV === production) {
-//   cbURL = "http://bookups.herokuapp.com/auth/goodreads/callback";
-// } else if (process.env.NODE_ENV === development) {
-//   cbURL = "http://localhost:5000/auth/goodreads/callback";
-// }
+
 
 module.exports.setup = function (passport, db){
 
   passport.use(new GoodreadsStrategy({
     consumerKey: process.env.CONSUMERKEY,
     consumerSecret: process.env.CONSUMER_SECRET,
-    callbackURL: "http://bookups.herokuapp.com/auth/goodreads/callback" // use `cbURL` when the envs are setup correctly. right now, local env. is also production
+    callbackURL: "http://bookups.herokuapp.com/auth/goodreads/callback" // use `cbURL` when the envs are setup correctly
   },
     function(token, tokenSecret, profile, done) {
     db.User.findAll({where: { goodreadsId: profile.id }}).then(function(user) {
