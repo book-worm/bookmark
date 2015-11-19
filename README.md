@@ -44,13 +44,6 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
-
 ## Waffle.io
 
 https://waffle.io/hard-cover/bookup
@@ -59,10 +52,6 @@ https://waffle.io/hard-cover/bookup
 
 https://github.com/hard-cover
 
-### jQuery plugin
-
-http://tympanus.net/Development/BookBlock/index.html
-
 ### Legacy
 
 * many users don't have usernames, so we need to allow them to add a name that they can display to our DB
@@ -70,3 +59,13 @@ http://tympanus.net/Development/BookBlock/index.html
 * refactor server side controllers to have a utils file
 * grab top rated read books to create favorites section
 * setup local heroku web environment so that it uses the correct env. variables and callback.
+* If you want a diagram of the file system, ask Fawn and she'll email it to you.
+
+## jQuery plugin
+We began to look into implementing the BookBlock jQuery plugin to get a page flipping effect when someone "flips" a potential match. (We also imagined a bookmarking effect for bookmarking.) You can read up on the plugin here: http://tympanus.net/Development/BookBlock/index.html
+Note that the js and css bookblock files are already in client/lib and in the index.html, but additional components may need to be inserted. There is also commented out code in the index.html for testing the jQuery plugin.
+
+
+### Issues
+* Bower vs Heroku:
+Note that bower was originally used to dl angular and jquery but it wouldn't deploy correctly, so we hard coded them into the html. However, the HIR Sarah advised us that what we need to do is use a .bowerrc file and add a bower script to the npm start script. We've done these things, but the cdn in the index needs to be switched to a relative path in the root folder, and then tested.
