@@ -17,13 +17,17 @@ angular.module('app', [
     .state('login', {
       url: '/',
       views: {
+        nav: {
+          templateUrl: 'app/navbar/navbar.html'
+        },
         content: { // no navbar for login
           templateUrl: '/app/login/login.html',
           controller: 'loginCtrl'
-        },
-        footer: {
-          templateUrl: '/app/footer/footer.html'
         }
+        // ,
+        // footer: {
+        //   templateUrl: '/app/footer/footer.html'
+        // }
       }
     })
     .state('browse', {
