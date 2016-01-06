@@ -18,7 +18,7 @@ angular.module('app', [
       url: '/',
       views: {
         nav: {
-          templateUrl: 'app/navbar/navbar.html'
+          templateUrl: 'app/navbar/navbarHome.html'
         },
         content: { // no navbar for login
           templateUrl: '/app/login/login.html',

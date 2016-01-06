@@ -22,7 +22,9 @@ module.exports.setup = function (passport, db){
   passport.use(new GoodreadsStrategy({
     consumerKey: process.env.CONSUMERKEY,
     consumerSecret: process.env.CONSUMER_SECRET,
-    callbackURL: "http://bookups.herokuapp.com/auth/goodreads/callback" // use `cbURL` when the envs are setup correctly
+    // callbackURL: "http://bookups.herokuapp.com/auth/goodreads/callback" // use `cbURL` when the envs are setup correctly
+    callbackURL: "http://localhost:5000/auth/goodreads/callback"
+
   },
     function(token, tokenSecret, profile, done) {
     db.User.findAll({where: { goodreadsId: profile.id }}).then(function(user) {
