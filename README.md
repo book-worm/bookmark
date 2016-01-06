@@ -18,9 +18,11 @@ Matchmaking application for booklovers.
 
 ## Usage
 
-```node server/server.js
+```
+node server/server.js
 psql
 ```
+
 You need a database with this connection: 'postgres://tunnelsup:SQL@localhost:5432/bookup_development'
 
 ### Installing Dependencies
