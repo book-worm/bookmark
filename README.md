@@ -12,8 +12,9 @@ Matchmaking application for booklovers.
 
 ### Tech Stack
 
-- Font end: AngularJS 
-- Back end: Node.js, Express
+- Client: AngularJS
+- Server: Node.js, Express, Sequelize
+- Database: PostgreSQL
 
 ### Installing Dependencies
 
