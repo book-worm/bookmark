@@ -16,6 +16,13 @@ Matchmaking application for booklovers.
 - Server: Node.js, Express, Sequelize
 - Database: PostgreSQL
 
+## Usage
+
+```node server/server.js
+psql
+```
+You need a database with this connection: 'postgres://tunnelsup:SQL@localhost:5432/bookup_development'
+
 ### Installing Dependencies
 
 From within the root directory:
