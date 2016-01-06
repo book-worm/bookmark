@@ -10,6 +10,8 @@ Matchmaking application for booklovers.
 
 ## Development
 
+### Tech Stack
+
 - Font end: AngularJS 
 - Back end: Node.js, Express
 
