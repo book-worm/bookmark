@@ -1,6 +1,7 @@
 body {
-  /*background-image: url("http://blog.athomearkansas.com/sites/athomearkansas.com/files/images/2/gallery_images/pug-n-shelves.jpg");*/
-  background-color: #B3CCE1;
+  background-image: url("http://blog.athomearkansas.com/sites/athomearkansas.com/files/images/2/gallery_images/pug-n-shelves.jpg");
+  /*background-color: #B3CCE1;*/
+  background-position: 50% 0%;
 }
 
 .footer {
@@ -15,4 +16,55 @@ body {
 .center {
   text-align: center;
   color: white;
+}
+
+.pageContainer {
+  display: flex; /* or inline-flex */
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signin {
+  background-color: rgba(0,0,0,.7);
+  border-radius: 5px;
+}
+
+.signin h1,h3,a {
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 7rem;
+}
+
+h3 {
+  margin-bottom: 2rem;  
+}
+
+.centered {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 50rem;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.signin__button {
+  background-color: black;
+  font-weight: 100;
+  border-color: white;
+}
+
+* {
+  /*border: 1px solid grey;*/
+}
+
+@media screen and (max-width: 600px) {
+  .signin {
+    max-width: 90%;
+  }
+  h1 {
+    font-size: 5.5rem;
+  }
 }
