@@ -1,4 +1,4 @@
-# Project Name
+# Bookworm
 
 > Matchmaking application for book-lovers.
 
