@@ -1,10 +1,6 @@
 /**
  * Creates a user from their GR profile, retreives their favorite and current books,
  * adds them too and makes the associations needed.
- *
- * ABANDON ALL HOPE, YE WHO ENTER HERE.
- * 
- * 
  */
 var http = require('http');
 var request = require('request');
